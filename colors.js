@@ -45,14 +45,13 @@ function createEmotions (emotionList){
         var htmlString = ''
         var selector = "#" + emotion;
         htmlString += "<h2>" + emotion + "</h2>"
-        htmlString += "<span>" + supportiveMessage() + '</span>'
+        htmlString += "<span class=\"" + emotion + "message\">" + supportiveMessage() + '</span>'
         htmlString += "<table>" + createTable(width, size, "#sad") + "</table>";
         htmlString += "<p>Write about a time that you were " + emotion + ", and draw it above. What did you draw? Why did you choose these colors?</p>";
         htmlString += "<textarea cols=\"50\" rows=\"10\"></textarea><hr/>"
         $(selector).html(htmlString);
         console.log('works')
     }
-    
 }
 function supportiveMessage(){
     var messages = [
