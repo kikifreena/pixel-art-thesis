@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Play Therapy</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="colors.js"></script>
+</head>
+<body>
+    <h1>Art in play therapy</h1>
+    <p>Instructions: Click the square to make the square the selected color.
+    </p>
+    <p id="errorJavascript">Please make sure your Javascript is enabled.</p>
+    <div>
+        <p>
+            Grid width: <input type="number" id="width" value="20"/>
+            Cell size: <input type="number" id="size" value="10"/ placeholder="px">  
+            <button onclick="updateAll();">Update</button>         
+        </p>
+        <p>
+            Select color: <input id="color" type="color" name="favcolor" value="#ffffff"> 
+        </p>        
+    </div>
+
+    <div id="sad"></div>
+    <div id="angry"></div>
+    <div id="fear"></div>
+    <div id="disgust"></div>
+    <div id="surprise"></div>
+    <div id="happy"></div>
+    <div>
+        <h2>Sad</h2>
+        <span id"sadmessage">Thank you</span><!--Attention, someone is watching the-->
+        <table id="sad2"></table>
+
+        <p>Write about a time that you were sad, and draw it above. What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+        <hr/>
+    </div>
+    <div>
+        <h2>Anger</h2>
+        <table id="anger2"></table>
+        <p>Write about a time that you were angry, and draw it above. What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+        <hr/>
+    </div>
+    <div>
+        <h2>Disgust</h2>
+        <table id="disgust2"></table>
+        <p>Write about a time that you were disgusted, and draw it above. What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+
+        <hr/>
+    </div>
+
+    <div>
+        <h2>Fear</h2>
+        <table id="fear2"></table>
+
+        <p>Write about a time that you were afraid, and draw it above. What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+
+        <hr/>
+    </div>
+    <div>
+        <h2>Surprise</h2>
+        <table id="surprise2"></table>
+
+        <p>Write about a time that you were surprised, and draw it above. What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+
+        <hr/>
+    </div>
+    <div>
+        <h2>Happy</h2>
+
+        <table id="happy2"></table>
+
+        <p>Write about a time that you were happy, and draw it above.  What did you draw? Why did you choose these colors?</p>
+
+        <textarea cols="50" rows="10"></textarea>
+
+        <hr/>
+    </div>
+    <div>
+        <br/>
+        <br/>
+        <h2>Finally...</h2>
+        <p>How are you feeling?</p>
+        <textarea cols="50" rows="10"></textarea>
+    </div>
+    <div>
+    <footer>
+        <hr/>
+        <h3>
+            references
+        </h3>
+        <hr/>
+        <a href="http://scrippscollege.edu/">Scripps College main page</a> | 
+        <a href="http://idaas.pomona.edu/">Back to IDAAS homepage</a> |
+        <a href="/about.html">About</a>
+    </footer>
+</div>
+</body>
+</html>

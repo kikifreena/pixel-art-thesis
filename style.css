@@ -1,0 +1,27 @@
+body {
+    background:aliceblue;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding:10px;
+}
+
+td {
+    border:1px solid black;
+    background:white;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+a:hover{
+    color:paleturquoise;
+}
+
+a {
+    color:darkblue;
+}
+
+#errorJavascript {
+    color:red;
+    font-weight: bold;
+}
