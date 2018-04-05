@@ -2,8 +2,9 @@ $( document ).ready(function(){
     $('#errorJavascript').hide();
     updateAll();
 })
+
 var pastTense = {
-    "sad": "sad",
+    sad: "sad",
     disgust: "disgusted",
     fear: "afraid",
     anger: "angry",
@@ -56,7 +57,7 @@ function createEmotions (emotionList){
         htmlString += "<span class=\"" + emotion + " message\">" + "<br/>" + '</span>'
         htmlString += "<table>" + createTable(width, size) + "</table>";
         htmlString += "<p>Write about a time that you were " + pastTense[emotion] + ", and draw it above. What did you create? Why did you choose these colors?</p>";
-        htmlString += "<textarea cols=\"50\" rows=\"10\"></textarea><hr/>"
+        htmlString += "<textarea cols=\"50\" rows=\"10\"></textarea><br/><hr/>"
         $(selector).html(htmlString);
     }
 }

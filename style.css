@@ -13,6 +13,15 @@ table {
     border-collapse: collapse;
 }
 
+.settings {
+    position: -webkit-sticky; /* Safari */
+    position:sticky;
+    background:aliceblue;
+    top: 0px;
+    right:150px;
+    width: 100%
+}
+
 a:hover{
     color:paleturquoise;
 }
