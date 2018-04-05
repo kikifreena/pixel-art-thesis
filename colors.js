@@ -2,7 +2,14 @@ $( document ).ready(function(){
     $('#errorJavascript').hide();
     updateAll();
 })
-
+var pastTense = {
+    "sad": "sad",
+    disgust: "disgusted",
+    fear: "afraid",
+    anger: "angry",
+    surprise: "surprised",
+    happy: "happy",
+}
 // comic strip: draw themselves, or draw something bad that happened today
 // art therapy: pixel art?
 // lots of grids for pixel art: draw your emotions
@@ -17,50 +24,52 @@ function updateAll(){
     createEmotions(["sad", "disgust", "fear", "anger", "surprise", "happy"]);
 }
 
+function createTable (width, padding){
+    var htmlString = ''
+    for (i = 0; i < width; i++){
+        htmlString +="\n<tr>";
+        for (j=0; j < width; j++ ){
+            htmlString += "\n\t<td style=\"padding:" + padding + "px;\"" ;
+            htmlString += "onclick=\"changeColor(this); supportiveMessage(this);\"></td>";
+        }
+        htmlString +="\n<tr/>";
+    }
+    return htmlString;
+}
+
 function changeColor(selector){
     var color = $("#color").val();
     console.log(color);
     $(selector).css('background', color);
 }
 
-function createTable (width, padding, selector){
-    var htmlString = ''
-    for (i = 0; i < width; i++){
-        htmlString +="\n<tr>";
-        for (j=0; j < width; j++ ){
-            htmlString += "\n\t<td style=\"padding:" + padding + "px;\"" ;
-            htmlString += "onclick=\"changeColor(this);\"></td>";
-        }
-        htmlString +="\n<tr/>";
-    }
-    //$(selector).html(htmlString);
-    return htmlString;
-}
-
 function createEmotions (emotionList){
     var width = Math.abs($("#width").val());
     var size = Math.abs($("#size").val());
-    for (i = 0; i < emotionList.length; i++){
+    for (var i = 0; i < emotionList.length; i++){
         var emotion = emotionList[i]
+        var emotionTitle = emotion.charAt(0).toUpperCase() + emotion.substr(1);
         var htmlString = ''
         var selector = "#" + emotion;
-        htmlString += "<h2>" + emotion + "</h2>"
-        htmlString += "<span class=\"" + emotion + "message\">" + supportiveMessage() + '</span>'
-        htmlString += "<table>" + createTable(width, size, "#sad") + "</table>";
-        htmlString += "<p>Write about a time that you were " + emotion + ", and draw it above. What did you draw? Why did you choose these colors?</p>";
+        var msg = supportiveMessage();
+        htmlString += "<h2>" + emotionTitle + "</h2>"
+        htmlString += "<span class=\"" + emotion + " message\">" + "<br/>" + '</span>'
+        htmlString += "<table>" + createTable(width, size) + "</table>";
+        htmlString += "<p>Write about a time that you were " + pastTense[emotion] + ", and draw it above. What did you create? Why did you choose these colors?</p>";
         htmlString += "<textarea cols=\"50\" rows=\"10\"></textarea><hr/>"
         $(selector).html(htmlString);
-        console.log('works')
     }
 }
-function supportiveMessage(){
+function supportiveMessage(selector){
+    // note: selector is the cell that is being clicked
     var messages = [
         'Thank you!',
         'Nice choice!',
         'Awesome!',
     ]
-
+    var selector = $(selector).parents("table").siblings(".message");
     var randomItem = messages[Math.floor(Math.random()*messages.length)];
+    $(selector).html(randomItem);
     return randomItem;
 }
 // tactile aspect: therapeutic, the clicking
