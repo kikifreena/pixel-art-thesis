@@ -1,15 +1,9 @@
 $( document ).ready(function(){
     $('#errorJavascript').hide();
     updateAll();
-    $('#pixelCanvas').on("click", "td", function(){
-        color = $('#colorPicker').val();
-        if (color == $(this).css('background')){
-            $(this).css('background', '')
-            console.log($(this).css('background'))
-        }
-        else {
-            $(this).css('background', color);
-        }
+    $('body').on("click", "td", function(){
+        supportiveMessage(this);
+        changeColor(this);
     })
 })
 
@@ -19,13 +13,14 @@ var pastTense = {
     fear: "afraid",
     anger: "angry",
     surprise: "surprised",
-    happy: "happy",
+    happy: "happy"
 }
 
 function updateAll(){
     var width = Math.abs($("#width").val());
     var size = Math.abs($("#size").val());
-    createEmotions(["sad", "disgust", "fear", "anger", "surprise", "happy"]);
+    createEmotions(["sad", "disgust", "fear", "anger", "surprise", "happy", "other"]);
+    
 }
 
 function createTable (width, padding){
@@ -33,11 +28,13 @@ function createTable (width, padding){
     for (i = 0; i < width; i++){
         htmlString +="\n<tr>";
         for (j=0; j < width; j++ ){
-            htmlString += "\n\t<td style=\"padding:" + padding + "px;\"" ;
-            htmlString += "onclick=\"changeColor(this); supportiveMessage(this);\"></td>";
+            htmlString += "\n\t<td></td>";
         }
-        htmlString +="\n<tr/>";
+        htmlString +="\n</tr>";
     }
+
+    $('td').css('padding', padding);
+    console.log('table created')
     return htmlString;
 }
 
