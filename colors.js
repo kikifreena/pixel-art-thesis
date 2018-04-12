@@ -1,6 +1,16 @@
 $( document ).ready(function(){
     $('#errorJavascript').hide();
     updateAll();
+    $('#pixelCanvas').on("click", "td", function(){
+        color = $('#colorPicker').val();
+        if (color == $(this).css('background')){
+            $(this).css('background', '')
+            console.log($(this).css('background'))
+        }
+        else {
+            $(this).css('background', color);
+        }
+    })
 })
 
 var pastTense = {
@@ -11,14 +21,7 @@ var pastTense = {
     surprise: "surprised",
     happy: "happy",
 }
-// comic strip: draw themselves, or draw something bad that happened today
-// art therapy: pixel art?
-// lots of grids for pixel art: draw your emotions
-// choose a color and fill in the grid according to the emotion
-// six basic emotions, one color grid for each.
-// Save the drawn artwork and send to therapist for interpretation
 
-// make sure that you have at least three points from the literature and have it in the app
 function updateAll(){
     var width = Math.abs($("#width").val());
     var size = Math.abs($("#size").val());
@@ -73,6 +76,3 @@ function supportiveMessage(selector){
     $(selector).html(randomItem);
     return randomItem;
 }
-// tactile aspect: therapeutic, the clicking
-// clicking again: the color could get darker
-// limiting to the boxes vs. using a line art - more abstract / higher level processing?
