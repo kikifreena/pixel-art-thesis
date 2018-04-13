@@ -17,23 +17,24 @@
     </p>
     <p id="errorJavascript">Please make sure your Javascript is enabled.</p>
     <div class="settings">
-        <div  style="background: inherit; position:absolute; float:left; top:0%; clear:both;"><p>
-            Grid width: <input type="number" id="width" value="20"/>
-            Cell size: <input type="number" id="size" value="10"/ placeholder="px">  
-            <button onclick="updateAll();">Update</button>         
-        </p>
-        </div>
-        <div style="background: inherit; position:absolute; float:right; left:50%; top:0%; clear:both;">
-                <p>
-                        Select color: <input id="color" type="color" name="favcolor" value="#ffffff">
-                        Eraser: <button id="use" onclick="erase();">Use</button>
-                        <button id="stop" onclick="unerase();">Stop</button> 
-                    </p><p>
-                Color: <button id="light" onclick="light();">Lighten</button>
-                <button id="dark" onclick="dark();">Darken</button> 
-                Amount: <input type="number" id="lightordark" value="20" min="0" max="255"></input>
-                <button onclick="validate();">Use</button>
-                <!-- this button is mostly meaningless, just for UI reasons... -->
+        <div style="background: inherit; position:absolute; float:right; left:50%; top:0%;">
+            <p>
+                Grid width: <input type="number" id="width" value="20" min="0" max="999"/>
+                Cell size: <input type="number" id="size" value="10"/ placeholder="px" min="0" max="999">  
+                <button onclick="updateAll();">Update</button>         
+            </p>
+            <hr/>
+            <p>
+                Select color: <input id="color" type="color" name="favcolor" value="#ffffff">
+                Eraser: <button id="use" onclick="erase();">Use</button>
+                <button id="stop" onclick="unerase();">Stop</button> 
+            </p>
+            <p>
+            Color: <button id="light" onclick="light();">Lighten</button>
+            <button id="dark" onclick="dark();">Darken</button> 
+            Amount: <input type="number" id="lightordark" value="20" min="0" max="255"></input>
+            <button onclick="validate();">Use</button>
+            <!-- this button is mostly meaningless, just for UI reasons... -->
             </p>
         </div>
     </div>
