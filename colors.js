@@ -1,5 +1,7 @@
 $( document ).ready(function(){
     $('#errorJavascript').hide();
+    $('#use').css('background','white')
+    $('#stop').css('background','yellow')
     updateAll();
     $('body').on("click", "td", function(){
         supportiveMessage(this);
@@ -19,6 +21,8 @@ var pastTense = {
     happy: "happy"
 }
 
+var clear = false;
+
 function updateAll(){
     var width = Math.abs($("#width").val());
     var size = Math.abs($("#size").val());
@@ -26,30 +30,35 @@ function updateAll(){
     
 }
 
-function createTable (width, padding){
-    var htmlString = ''
-    for (i = 0; i < width; i++){
-        htmlString +="\n<tr>";
-        for (j=0; j < width; j++ ){
-            htmlString += "\n\t<td></td>";
-        }
-        htmlString +="\n</tr>";
-    }
+function erase(){
+    $('#use').css('background','yellow')
+    $('#stop').css('background','white')
+    clear = true
+}
 
-    $('td').css('padding', padding);
-    return htmlString;
+function unerase(){
+    $('#use').css('background','white')
+    $('#stop').css('background','yellow')
+    clear = false
+}
+
+function hexToInt(hexString){
+    null
 }
 
 function changeColor(selector){
     var color = $("#color").val();
-    console.log($(this))
-    console.log($(this).attr('class'))
-    if ($(this).attr('class') == 'changed'){
-        console.log('repeat')
-    }    
+    if (clear == true){
+        $(selector).css('background', '#ffffff');
+    }
     else {
-        $(this).addClass('changed');
-        $(selector).css('background', color);
+        if ($(selector).attr('class') == 'changed'){
+            console.log(color)
+        }    
+        else {
+            $(selector).addClass('changed');
+            $(selector).css('background', color);
+        }
     }
 }
 
@@ -70,6 +79,20 @@ function createEmotions (emotionList){
         $(selector).html(htmlString);
     }
 }
+
+function createTable (width, padding){
+    var htmlString = ''
+    for (i = 0; i < width; i++){
+        htmlString +="\n<tr>";
+        for (j=0; j < width; j++ ){
+            htmlString += "\n\t<td></td>";
+        }
+        htmlString +="\n</tr>";
+    }
+    $('td').css('padding', padding);
+    return htmlString;
+}
+
 function supportiveMessage(selector){
     // note: selector is the cell that is being clicked
     var messages = [
