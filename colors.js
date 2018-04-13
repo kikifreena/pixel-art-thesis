@@ -2,6 +2,9 @@ $( document ).ready(function(){
     $('#errorJavascript').hide();
     $('#use').css('background','white')
     $('#stop').css('background','yellow')
+
+    $('#light').css('background','white')
+    $('#dark').css('background','yellow')
     updateAll();
     $('body').on("click", "td", function(){
         supportiveMessage(this);
@@ -22,12 +25,12 @@ var pastTense = {
 }
 
 var clear = false;
+var mode = true;
 
 function updateAll(){
     var width = Math.abs($("#width").val());
     var size = Math.abs($("#size").val());
     createEmotions(["sad", "disgust", "fear", "anger", "surprise", "happy", "other"]);
-    
 }
 
 function erase(){
@@ -42,24 +45,88 @@ function unerase(){
     clear = false
 }
 
+function light(){
+    $('#light').css('background','yellow')
+    $('#dark').css('background','white')
+    mode = false
+}
+
+function dark(){
+    $('#dark').css('background','yellow')
+    $('#light').css('background','white')
+    mode = true
+}
+
+function validate(){
+    var lod = $("#lightordark").val();
+    if (parseInt(lod) == NaN || lod > 256 || lod < 0){
+        alert("Error: amount must be between 0 and 255.")
+        return false;
+    }
+    else {
+        return lod
+    }
+}
+
 function hexToInt(hexString){
-    null
+    var letters = {A: 10, B: 11, C: 12, D: 13, E: 14, F: 15,
+    1: 1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8: 8, 9: 9}   
+    var rgb = []
+    for (var i = 1; i < hexString.length; i+=2){
+        var hexDec = hexString.slice(i,i+2)
+        var hexA = hexDec.charAt(0).toUpperCase()
+        var hexB = hexDec.charAt(1).toUpperCase()
+        rgb.push((letters[hexA]*16 + letters[hexB] ))
+    }
+    return rgb
+}
+
+function darkenColor(color, amount){
+    if (mode == false){
+        amount *= -1
+    }
+    finalColors = []
+    if (String(color).charAt(0) == '#'){
+        var colors = hexToInt(color)
+    }
+    else if (color.slice(0, 3) == 'rgb'){
+        var colors = color.slice(4,-1)
+        colors = colors.split(", ")
+    }
+    else {
+        var colors = color
+    }
+    for (var i = 0; i < colors.length; i++){
+        var finalAmount = parseInt(colors[i]) - amount
+        if (finalAmount < 0){
+            finalColors.push(0)
+        }
+        else if (finalAmount > 255){
+            finalColors.push(255)
+        }
+        else {
+            finalColors.push(finalAmount)
+        }
+    }
+    return finalColors
 }
 
 function changeColor(selector){
     var color = $("#color").val();
+    var currentColor = $(selector).css('background-color')
+    var level = validate();
     if (clear == true){
         $(selector).css('background', '#ffffff');
     }
     else {
-        if ($(selector).attr('class') == 'changed'){
-            console.log(color)
+        if ($(selector).attr('class') == 'changed' && validate()){
+            color = String( 'rgb(' + darkenColor(currentColor, level) + ')')
         }    
         else {
             $(selector).addClass('changed');
-            $(selector).css('background', color);
         }
     }
+    $(selector).css('background', color);
 }
 
 function createEmotions (emotionList){

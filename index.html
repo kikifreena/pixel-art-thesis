@@ -25,7 +25,14 @@
             Select color: <input id="color" type="color" name="favcolor" value="#ffffff">
             Eraser: <button id="use" onclick="erase();">Use</button>
             <button id="stop" onclick="unerase();">Stop</button> 
-        </p>        
+        </p>
+        <p>
+            Color: <button id="light" onclick="light();">Lighten</button>
+            <button id="dark" onclick="dark();">Darken</button> 
+            Amount: <input type="number" id="lightordark" value="20" min="0" max="255"></input>
+            <button onclick="validate();">Use</button>
+            <!-- this button is mostly meaningless, just for UI reasons... -->
+        </p>
     </div>
 
     <div id="sad"></div> <br/>
