@@ -5,6 +5,9 @@ $( document ).ready(function(){
         supportiveMessage(this);
         changeColor(this);
     })
+    $("#color").change(function(){
+        $('.changed').removeClass('changed')
+    })
 })
 
 var pastTense = {
@@ -34,14 +37,20 @@ function createTable (width, padding){
     }
 
     $('td').css('padding', padding);
-    console.log('table created')
     return htmlString;
 }
 
 function changeColor(selector){
     var color = $("#color").val();
-    console.log(color);
-    $(selector).css('background', color);
+    console.log($(this))
+    console.log($(this).attr('class'))
+    if ($(this).attr('class') == 'changed'){
+        console.log('repeat')
+    }    
+    else {
+        $(this).addClass('changed');
+        $(selector).css('background', color);
+    }
 }
 
 function createEmotions (emotionList){
